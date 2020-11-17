@@ -3,7 +3,7 @@ package geco;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-
+//STARTING TESTING CLASS
 public class TestLoginService extends TestCase {
 
     /**
