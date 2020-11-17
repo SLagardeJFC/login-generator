@@ -1,0 +1,3 @@
+ignore /target
+ignore /.idea
+ignore all iml *.iml
