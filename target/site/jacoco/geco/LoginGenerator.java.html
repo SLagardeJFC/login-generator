@@ -35,13 +35,22 @@ public class LoginGenerator {
      */
     public String generateLoginForNomAndPrenom(String nom, String prenom) {
 <span class="fc" id="L37">        String p = deAccent(prenom.substring(0,1).toUpperCase());</span>
-<span class="fc" id="L38">        String n = deAccent(nom.substring(0,3).toUpperCase());</span>
-<span class="fc" id="L39">        String login = p+n ;</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (loginService.loginExists(login)) {</span>
-<span class="fc" id="L41">            login = login + &quot;1&quot; ;</span>
+        String n;
+        try {
+<span class="fc" id="L40">            n = deAccent(nom.substring(0, 3).toUpperCase());</span>
+<span class="fc" id="L41">        } catch (Exception e) {</span>
+            try {
+<span class="fc" id="L43">                n = deAccent(nom.substring(0, 2).toUpperCase());</span>
+<span class="nc" id="L44">            } catch (Exception ex) {</span>
+<span class="nc" id="L45">                n = deAccent(nom.substring(0, 1).toUpperCase());</span>
+<span class="fc" id="L46">            }</span>
+<span class="fc" id="L47">        }</span>
+<span class="fc" id="L48">        String login = p+n ;</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (loginService.loginExists(login)) {</span>
+<span class="fc" id="L50">            login = login + &quot;1&quot; ;</span>
         }
-<span class="fc" id="L43">        loginService.addLogin(login);</span>
-<span class="fc" id="L44">        return login;</span>
+<span class="fc" id="L52">        loginService.addLogin(login);</span>
+<span class="fc" id="L53">        return login;</span>
     }
 
     /**
@@ -51,9 +60,9 @@ public class LoginGenerator {
      * @return la chaine de caractere sans accents
      */
     private String deAccent(String str) {
-<span class="fc" id="L54">        String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);</span>
-<span class="fc" id="L55">        Pattern pattern = Pattern.compile(&quot;\\p{InCombiningDiacriticalMarks}+&quot;);</span>
-<span class="fc" id="L56">        return pattern.matcher(nfdNormalizedString).replaceAll(&quot;&quot;);</span>
+<span class="fc" id="L63">        String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);</span>
+<span class="fc" id="L64">        Pattern pattern = Pattern.compile(&quot;\\p{InCombiningDiacriticalMarks}+&quot;);</span>
+<span class="fc" id="L65">        return pattern.matcher(nfdNormalizedString).replaceAll(&quot;&quot;);</span>
     }
 
 
