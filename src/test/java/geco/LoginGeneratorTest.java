@@ -28,4 +28,11 @@ public class LoginGeneratorTest {
         assertEquals(res1,usr1);
     }
 
+    @Test
+    public void testMoins3() {
+        String usr = "PDU";
+        String res = lg.generateLoginForNomAndPrenom("du" ,"paul");
+        assertEquals(usr,res);
+    }
+
 }
